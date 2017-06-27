@@ -28,7 +28,7 @@ class Url_Download():
     def cost_time(self,):
         def wrap(self):
             start=time.time()
-
+# 下载网址代码
     def html_download(self,url):
         if url is None:
             return None
@@ -43,7 +43,7 @@ class Url_Download():
             return None
         return response.content
 
-
+# 获取所有的基金ID 名称 网址 返回list funds_text
     def html_extract_content(self,html_cont):
         funds_text=[]
         if html_cont is None:
@@ -75,11 +75,11 @@ class Url_Download():
                     funds_text.append(fund_info_dict)
 
         return funds_text
-
+# 获取所有的基金ID 名称 网址 返回list funds_text
     def get_all_funds_dict(self):
-        text = self.html_download(self.url)
+        text = self.html_download(self.url)# 下载网址代码
         if text:
-            self.funds = self.html_extract_content(text)
+            self.funds = self.html_extract_content(text)# 获取所有的基金ID 名称 网址 返回list funds_text
 
         return self.funds
 
@@ -171,6 +171,7 @@ class Handle_Url(Thread):
                 fund_data.append(rate)
         return fund_data
 
+# 下载网页代码，返回 盈亏率
     def parse_url(self,url):
         re_sorted_fund_data=[]
         html_content=self.html_download(url)
@@ -191,8 +192,8 @@ if __name__=='__main__':
     start=time.time()
     url_base='http://fund.eastmoney.com/allfund.html#0'
 
-    url_download=Url_Download(url_base)
-    funds=url_download.get_all_funds_dict()
+    url_download=Url_Download(url_base) # 实例化类
+    funds=url_download.get_all_funds_dict() # 获取所有的基金ID 名称 网址 返回list funds_text
 
     queue=Queue()
     threads=[]

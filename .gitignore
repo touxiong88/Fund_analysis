@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+.idea/
+Fund_analysis/fund_3.1.csv
+fund_data/
+fund_title/
