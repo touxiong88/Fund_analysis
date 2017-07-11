@@ -110,11 +110,14 @@ def analyze_one_fund(fund_id, retuen=None):
     df['inc']=[get_inc(x) for x in df['rate(%)']]
     df['dec']=[get_dec(x) for x in df['rate(%)']]
     #frames=[df['dec'],df['inc']] #dataframe 合并
-    #df_new=pd.concat(frames) #dataframe 合并
-    df['inc'][:60].plot()
-    df['dec'][:60].plot()
+    # df_new=pd.concat(frames) #dataframe 合并
+    df['inc'].plot(label=u'盈率')
+    df['dec'].plot(label=u'亏率')
+    #df['fund_value'].plot(label='value')
+    # plt.plot(x,df['inc'][:60],color='g',linestyle='-',marker='',label=u"盈率")
+    # plt.plot(x,df['dec'][:60],color='m',linestyle='',marker='o',label=u"亏率")
     plt.title('基金_%s'%(fund_id))
-    plt.plot(label=u'涨幅曲线')
+    #plt.plot(label=u'涨幅曲线')
     plt.xlabel('time')
     plt.ylabel('rate%')
     plt.show()
@@ -234,5 +237,8 @@ if  __name__ == '__main__':  # 文件运行main入口
 
 # 嘉实基本面50[160716]
 # 易方达消费行业[110022]
+# 借道基金
+# 164906交银中证海外 513050易方达中概互联
+# 000988嘉实全球互联 001668汇添富全球互联
 
 
