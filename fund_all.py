@@ -111,8 +111,8 @@ def analyze_one_fund(fund_id, retuen=None):
     df['dec']=[get_dec(x) for x in df['rate(%)']]
     #frames=[df['dec'],df['inc']] #dataframe 合并
     # df_new=pd.concat(frames) #dataframe 合并
-    df['inc'].plot(label=u'盈率')
-    df['dec'].plot(label=u'亏率')
+    df['inc'].plot(label='up')
+    df['dec'].plot(label='down')
     #df['fund_value'].plot(label='value')
     # plt.plot(x,df['inc'][:60],color='g',linestyle='-',marker='',label=u"盈率")
     # plt.plot(x,df['dec'][:60],color='m',linestyle='',marker='o',label=u"亏率")
@@ -120,6 +120,7 @@ def analyze_one_fund(fund_id, retuen=None):
     #plt.plot(label=u'涨幅曲线')
     plt.xlabel('time')
     plt.ylabel('rate%')
+    plt.legend()
     plt.show()
 
     print df
@@ -226,17 +227,21 @@ def run_variance(fund_id): # 计算盈亏率方差 用于评估股票波动
 if  __name__ == '__main__':  # 文件运行main入口
     print "hello python"
     #download_mutiple_fund() #下载所有只基金
-    #download_littlt_fund(160716,160716+1)
-    weekday=analyze_one_fund('160716') #返回周几降的概率大，适合买入
+    #ownload_littlt_fund(2910,2910+1)
+    weekday=analyze_one_fund('002910') #返回周几降的概率大，适合买入
     print"decrease day is week  "+str(weekday)
     #show_fund('160716')
     #run_variance('110022')
 
+# 易方达供给改革混合 002910
+# 中融国证钢铁	 168203
 
-
-
+# 长信量化先锋混合 519983
 # 嘉实基本面50[160716]
 # 易方达消费行业[110022]
+# 3年 1年 6个月 3个月 1个月 都在涨的基金
+# 150050 000619 150124 110022
+
 # 借道基金
 # 164906交银中证海外 513050易方达中概互联
 # 000988嘉实全球互联 001668汇添富全球互联
