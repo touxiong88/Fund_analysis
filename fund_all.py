@@ -93,6 +93,13 @@ def get_dec(s):
         temp_dec =-s
     return temp_dec
 
+def get_fund_name(fund_id):
+    fund_name = "fund_name"
+    sStr1 = 'strch'
+    sStr2 = 'strchr'
+    print cmp(sStr1,sStr2)##-1
+
+    return fund_name
 
 # 数据分析 str fund_id
 def analyze_one_fund(fund_id, retuen=None):
@@ -111,8 +118,8 @@ def analyze_one_fund(fund_id, retuen=None):
     df['dec']=[get_dec(x) for x in df['rate(%)']]
     #frames=[df['dec'],df['inc']] #dataframe 合并
     # df_new=pd.concat(frames) #dataframe 合并
-    df['inc'].plot(label='up')
-    df['dec'].plot(label='down')
+    df['inc'].plot(label=u'上升')
+    df['dec'].plot(label=u'下降')
     #df['fund_value'].plot(label='value')
     # plt.plot(x,df['inc'][:60],color='g',linestyle='-',marker='',label=u"盈率")
     # plt.plot(x,df['dec'][:60],color='m',linestyle='',marker='o',label=u"亏率")
@@ -123,7 +130,7 @@ def analyze_one_fund(fund_id, retuen=None):
     plt.legend()
     plt.show()
 
-    print df
+    # print df
 
     # 看一下一年有多少天是没有涨的
     df_price_decline=df[df['rate(%)']<0]
@@ -154,16 +161,16 @@ def get_years_ago(  n  ):
     time_year_ago = time_now - timedelta(365*n)
     return time_year_ago.strftime('%Y-%m-%d')
 
-def download_littlt_fund(begin,end):    # 下载多只基金数据
-     for i in range(begin,end): # 基金号从begin end
-        f_id=str(i)
-        fund_id = f_id.zfill(6) # 字符串前面补0
+def download_one_fund(fund_id):    # 下载多只基金数据
+     # for i in range(begin,end): # 基金号从begin end
+     #    f_id=str(i)
+     #    fund_id = f_id.zfill(6) # 字符串前面补0
         fund_html=html_download(fund_id,get_years_ago(2),get_today())
         # time.sleep(3)
-        if len(fund_html) < 10: # 无效的网址返回空list []
-            continue
-        fund_data=decode_html(fund_id,fund_html)
-        write_csv(fund_id,fund_data)
+        if len(fund_html) > 10: # 无效的网址返回空list []
+            # continue
+            fund_data=decode_html(fund_id,fund_html)
+            write_csv(fund_id,fund_data)
 
 
 def download_mutiple_fund():    # 下载多只基金数据
@@ -227,12 +234,14 @@ def run_variance(fund_id): # 计算盈亏率方差 用于评估股票波动
 if  __name__ == '__main__':  # 文件运行main入口
     print "hello python"
     #download_mutiple_fund() #下载所有只基金
-    #ownload_littlt_fund(2910,2910+1)
-    weekday=analyze_one_fund('002910') #返回周几降的概率大，适合买入
+    fund_id_main = "110022"
+    download_one_fund(fund_id_main)
+    weekday=analyze_one_fund(fund_id_main) #返回周几降的概率大，适合买入
     print"decrease day is week  "+str(weekday)
     #show_fund('160716')
     #run_variance('110022')
 
+# 兴全沪深300指数(LOF)(163407)
 # 易方达供给改革混合 002910
 # 中融国证钢铁	 168203
 
@@ -243,7 +252,8 @@ if  __name__ == '__main__':  # 文件运行main入口
 # 150050 000619 150124 110022
 
 # 借道基金
-# 164906交银中证海外 513050易方达中概互联
-# 000988嘉实全球互联 001668汇添富全球互联
+# 164906 交银中证海外 513050 易方达中概互联
+# 000988 嘉实全球互联 001668 汇添富全球互联
 
 
+# 增减率分开后去掉无数据行 2017-8-23 TODO
