@@ -64,6 +64,7 @@ def write_csv(fund_id,funds):
             writer.writerow(each)
 
 
+
 # 数据分析
 def read_csv(fund_id):
     file='fund_%.csv'%(fund_id)

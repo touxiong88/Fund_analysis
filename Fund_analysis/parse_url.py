@@ -17,7 +17,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-CSV_File= 'fund3.1.csv'
+CSV_File= 'fund_sun.csv'
 lock=threading.Lock()
 
 class Url_Download():
@@ -119,8 +119,10 @@ class Handle_Url(Thread):
                 fund_name=fund['fund_name']
                 print self.name+":"+"Begin parse :[%s %s] now"%(fund_id,fund_name)
                 fund_data=self.parse_url(url)
+                print 'sun',fund_data
                 fund_data.insert(0,fund_id)
                 fund_data.insert(1,fund_name)
+                print 'sun1',fund_data
 
                 lock.acquire()
                 try:

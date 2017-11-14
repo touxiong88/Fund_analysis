@@ -76,6 +76,8 @@ def write_csv(fund_id,funds):
         writer.writerow(head) # 使用 np.loadtxt需要每列数据格式一样
         for each in funds:
             writer.writerow(each)
+            print 'test',type(each),each #todo
+
 
 temp_inc = 0
 def get_inc(s):
@@ -233,11 +235,11 @@ def run_variance(fund_id): # 计算盈亏率方差 用于评估股票波动
 # 2）利用dataframe对数据进行处理
 if  __name__ == '__main__':  # 文件运行main入口
     print "hello python"
-    #download_mutiple_fund() #下载所有只基金
-    fund_id_main = "110022"
-    download_one_fund(fund_id_main)
-    weekday=analyze_one_fund(fund_id_main) #返回周几降的概率大，适合买入
-    print"decrease day is week  "+str(weekday)
+    download_mutiple_fund() #下载所有只基金
+    # fund_id_main = "110022"
+    # download_one_fund(fund_id_main)
+    # weekday=analyze_one_fund(fund_id_main) #返回周几降的概率大，适合买入
+    # print"decrease day is week  "+str(weekday)
     #show_fund('160716')
     #run_variance('110022')
 
